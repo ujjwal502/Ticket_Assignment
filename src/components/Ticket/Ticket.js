@@ -61,7 +61,7 @@ class Ticket extends Component {
             }
         } else {
             window.alert
-                ('You can"t have duplicate card!')
+                ('You can not have duplicate card!')
         }
     };
 
