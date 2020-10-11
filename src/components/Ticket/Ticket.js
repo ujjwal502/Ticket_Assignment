@@ -4,9 +4,7 @@ import Spinner from "../Spinner/Spinner";
 import backspace from "../../clear.svg";
 import deleteIcon from '../../delete.svg'
 import add from "../../plusSign.svg";
-
 function Ticket (props) {
-
     // constructor(props) {
     //     super(props);
     //     this.cards = ["1", "2", "3", "4"];
@@ -24,41 +22,40 @@ function Ticket (props) {
         clear: '',
         randomnumber: null
     })
-
    const handle = (digit) => {
         const count = values.count;
         if (count.length < 6) {
             setValues({
-                count: count === '0' ? String(digit) : count + digit,
+                ...values,
+                count: count === 0 ? digit.toString() : count + digit,
             });
         }
     };
-
     const clear = () => {
-        setValues((prevState) => ({
-            count: prevState.count.slice(0, -1)
-        }))
+        setValues({
+            ...values,
+            count: values.count.slice(0, -1)
+        })
     }
-
     const deleteAll = () => {
         setValues({
+            ...values,
             count: '',
         });
     };
-
     const generate = (ele) => {
         let flag = false;
-        for (let i = 0; i < cardsWithNumber; i++) {
-            console.log(cardsWithNumber[i])
+        for (let i = 0; i < values.cardsWithNumber.length; i++) {
+            console.log(values.cardsWithNumber[i])
             if (parseInt(values.count) === parseInt(values.cardsWithNumber[i])) {
                 console.log(values.cardsWithNumber[i])
                 flag = true;
             }
         }
-
         if (!flag) {
-            if (values.cardsWithNumber < 5) {
+            if (values.cardsWithNumber.length < 5) {
                 setValues({
+                    ...values,
                     cardsWithNumber: [
                         ...values.cardsWithNumber,
                         values.count
@@ -71,29 +68,26 @@ function Ticket (props) {
                 ('You can not have duplicate card!')
         }
     };
-
     const selectItem = () => {
         var minm = 100000;
         var maxm = 999999;
-
         if (values.randomnumber === null) {
             const randomnumber = Math.floor(Math.random() * (maxm - minm + 1)) + minm;
-
-            if (props.onSelectItem) {
-                props.onSelectItem(randomnumber);
-            }
+             if (props.onSelectItem) {
+                 props.onSelectItem(randomnumber);
+             }
             if (values.cardsWithNumber.length < 5) {
+                let cwn = values.cardsWithNumber;
+                cwn.push(randomnumber);
                 setValues({
-                    cardsWithNumber: [
-                        ...values.cardsWithNumber,
-                        randomnumber
-                    ],
+                    ...values,
+                    cardsWithNumber: cwn,
                     randomnumber: randomnumber,
                 })
             }
         }
         else {
-            setValues({ randomnumber: null });
+            setValues({ ...values,randomnumber: null });
             setTimeout(selectItem, 0);
         }
     };
@@ -101,18 +95,16 @@ function Ticket (props) {
         var { cardsWithNumber } = values;
         cardsWithNumber = cardsWithNumber.filter((ele, ind) => ind !== index);
         setValues({
-            generateNumber: '',
+            ...values,
             cardsWithNumber
         })
     }
-
     const deleteSpinnerTicket = () => {
         setValues({
+            ...values,
             randomnumber: null
         })
     }
-
-    
         const { cardsWithNumber } = values;
         return (
             <div className="ticketgenerator">
@@ -121,7 +113,6 @@ function Ticket (props) {
                         <div className="digit-header">
                             <input className=" text" placeholder=" Enter 6 digit " value={values.count} type="text" />
                         </div>
-
                         <div className="digit">
                             <div className="numeric-values" onClick={() => handle(7)}>
                                 7
@@ -158,18 +149,15 @@ function Ticket (props) {
                                 <img src={deleteIcon} alt="deleteIcon" />
                             </div>
                         </div>
-
                         <div className="digit-footer" onClick={generate}>
                             <img src={add} style={{ lineHeight: 2 }} alt="add" /> ADD TICKET
                         </div>
                     </div>
                     <div className="spinner-container">
                         <span> Click the Wheel to generate your ticket</span>
-
                         <div className="spinnerwheel">
                             <Spinner items={cards} selectedItem={selectItem} randomnumber={values.randomnumber} />
                         </div>
-
                         <span className="ticket-text">
                             Range of Ticket-number : 100000-999999
                         </span>
@@ -178,8 +166,8 @@ function Ticket (props) {
                 <div className="selected-ticket">
                     <span style={{ paddingLeft: "10px" }}> Your Selected Tickets : </span>
                     <div className="card-container">
-                        {cardsWithNumber.map((card, index) => 
-                             (
+                        {cardsWithNumber.map((card, index) =>
+                            (
                                 <div className="cards" key={index}>
                                     <img src={deleteIcon} alt="deleteIcon" className="deleteIcon" onClick={() => deleteTicket(index)} />
                                     <div className="ticket-card">
@@ -187,12 +175,11 @@ function Ticket (props) {
                                         <span className="ticket"> {card}</span>
                                     </div>
                                 </div>
-                            )
-                        )}
+                            ))
+                        }
                     </div>
                 </div>
             </div>
         );
-    
 }
 export default Ticket;

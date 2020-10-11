@@ -15,7 +15,6 @@ function Spinner(props) {
                 <div className={`wheel ${spinning}`} style={wheelVars} onClick={props.selectedItem}>
                     {items.map((item, index) => (
                         <div className="wheel-item" key={index} style={{ '--item-nb': index }}>
-
                         </div>
                     ))}
                 </div>
