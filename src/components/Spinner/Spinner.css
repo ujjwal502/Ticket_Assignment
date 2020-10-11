@@ -10,7 +10,7 @@
   --item-nb: 0;
   --selected-item: 0;
   --nb-turn: 5;
-  --spinning-duration: 4s;
+  --spinning-duration: 0.75s;
   --reset-duration: 0.25s;
 }
 
@@ -61,7 +61,7 @@
   height: 300px;
   overflow: hidden;
   border-radius: 50%;
-  border: solid rgba(23, 20, 220, 0.733) 5px;
+  border: solid #004faa 5px;
   background-color: var(--wheel-color);
   transition: transform var(--reset-duration);
   transform: rotate(0deg);

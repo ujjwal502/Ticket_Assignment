@@ -1,8 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Anton&family=Bitter:ital,wght@1,700&display=swap");
-
 .ticketgenerator {
   padding: 10px;
-  background: linear-gradient(56deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-color: #004faa;
   height: calc(100vh - 20px);
 }
 .generator-container {
@@ -24,8 +22,6 @@
   margin-bottom: 15px;
 }
 .spinner-container {
-  font-family: "Anton", sans-serif;
-  font-family: "Bitter", serif;
   padding: 5px;
   color: #fff;
   font-size: 16px;
@@ -46,8 +42,6 @@
   grid-template-rows: repeat(4, 1fr);
 }
 .digit-footer {
-  font-family: "Anton", sans-serif;
-  font-family: "Bitter", serif;
   cursor: pointer;
   height: 25px;
   font-size: 15px;
@@ -76,17 +70,15 @@
   margin-bottom: 25px;
 }
 .ticket-text {
-  padding: 10px;
+  padding: 8px;
   border: 1px solid yellow;
   font-size: 15px;
   font-weight: 500;
   color: red;
-  background-color: rgb(255, 255, 255);
+  background-color: #fff;
   border-radius: 5px;
 }
 .selected-ticket {
-  font-family: "Anton", sans-serif;
-  font-family: "Bitter", serif;
   text-align: start;
   height: 100px;
   margin-top: 20px;
@@ -117,8 +109,8 @@
 }
 .text {
   padding-left: 10px;
-  border-radius: 10px;
-  border: 4px solid #e73c7e;
+  border-radius: 5px;
+  border: 1px solid orangered;
   width: 100px;
 }
 ::placeholder {
@@ -138,13 +130,13 @@
   padding-left: 10px;
   border-radius: 5px;
   width: 40%;
-  color: #741c65c7;
+  color: #1c4574;
   font-weight: 500;
   background-color: lightgrey;
   margin-bottom: 20px;
 }
 .ticket {
-  color: #aa0063;
+  color: #004faa;
 }
 .deleteIcon {
   cursor: pointer;
